@@ -16,8 +16,12 @@ export default function App() {
   const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
-    api.get('repositories').then(response => {
+    api.get('repositories')
+    .then(response => {
       setRepositories(response.data);
+    })
+    .catch(err => {
+      console.log(err);
     })
   }, []);
 
@@ -38,10 +42,9 @@ export default function App() {
                 <Text style={styles.repository}>{repository.title}</Text>
                 <FlatList
                   data={repository.techs}
-                  keyExtractor={ ({ techs }) => tech.name}
                   style={styles.techsContainer} 
                   renderItem={ ({ item: tech }) => (
-                    <Text style={styles.tech}>{tech.name}</Text>
+                    <Text style={styles.tech}>{tech}</Text>
                   )}
                 />
               </View>
