@@ -5,7 +5,7 @@ import AxiosMock from "axios-mock-adapter";
 import api from "../services/api";
 const apiMock = new AxiosMock(api);
 
-import App from "../App";
+import App from "../views/App";
 import { render, fireEvent, act } from "@testing-library/react-native";
 
 const wait = (amount = 0) => {
