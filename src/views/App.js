@@ -42,9 +42,10 @@ export default function App() {
                 <Text style={styles.repository}>{repository.title}</Text>
                 <FlatList
                   data={repository.techs}
+                  keyExtractor={tech => `${tech}-${repository.id}`}
                   style={styles.techsContainer} 
                   renderItem={ ({ item: tech }) => (
-                    <Text key={tech.id} style={styles.tech}>{tech.name}</Text>
+                    <Text style={styles.tech}>{tech}</Text>
                   )}
                 />
               </View>
@@ -54,7 +55,8 @@ export default function App() {
                   style={styles.likeText}
                   testID={`repository-likes-${repository.id}`}
                 >
-                  {`${repository.likes} curtidas`}
+                  {repository.likes > 1 || repository.likes === 0 ? 
+                  `${repository.likes} curtidas` : `${repository.likes} curtida`}
                 </Text>
               </View>
 
